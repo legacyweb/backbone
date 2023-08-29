@@ -14,6 +14,7 @@ postgresUser: legacyweb
 
 # database password (change me)
 dbPassword: 'supersecretpassword'
+redisPassword: 'supersecretpassword'
 
 # Change this to the local path you want to mount on your master node
 volumePath: /legacyweb/db
