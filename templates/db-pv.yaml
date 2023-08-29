@@ -8,7 +8,7 @@ spec:
   capacity:
     storage: {{ .Values.dbVolumeSize }}
   local:
-    path: {{ .Values.volumePath }}/db
+    path: {{ .Values.volumePath }}
   nodeAffinity:
     required:
       nodeSelectorTerms:
