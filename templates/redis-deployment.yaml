@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  labels:
+    app: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      annotations:
+        redispass/hash: {{ .Values.redisPassword | sha1sum | quote }}
+      labels:
+        app: redis
+    spec:
+      containers:
+        - name: redis
+          image: 'jusschwa/redis:{{ .Values.releaseTag }}'
+          imagePullPolicy: Always
+          ports:
+            - containerPort: {{ .Values.redisPort }}
+              protocol: TCP
+          envFrom:
+            - secretRef:
+                name: redis-pass

@@ -6,6 +6,9 @@
 dbInternalPort: 27017
 dbServicePort: 5432
 
+# Port redis runs on
+redisPort: 6379
+
 # postgres user
 postgresUser: legacyweb
 
