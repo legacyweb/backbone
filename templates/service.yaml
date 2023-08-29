@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-svc
+spec:
+  selector:
+    app: legacyweb-db
+  ports:
+    - name: guardian-db
+      protocol: TCP
+      port: {{ .Values.dbServicePort }}
+      targetPort: {{ .Values.dbServicePort }}

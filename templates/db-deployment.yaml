@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: legacyweb-db
+  labels:
+    app: legacyweb-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: legacyweb-db
+  template:
+    metadata:
+      annotations:
+        dbpass/hash: {{ .Values.dbPassword | sha1sum | quote }}
+      labels:
+        app: legacyweb-db
+    spec:
+      containers:
+        - name: legacyweb-db
+          image: "bitnami/postgresql:latest"
+          imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: {{ .Values.persistentDbPath }}
+              name: db-pv
+          ports:
+            - name: db
+              containerPort: {{ .Values.dbInternalPort }}
+              protocol: TCP
+          envFrom:
+            - secretRef:
+                name: db-secret
+          env:
+            - name: POSTGRES_USER
+              value: {{ .Values.postgresUser }}
+            - name: PGDATA
+              value: {{ .Values.persistentDbPath }}
+            - name: POSTGRES_DB
+              value: {{ .Values.postgresDbName }}
+      volumes:
+        - name: db-pv
+          persistentVolumeClaim:
+            claimName: db-pvc

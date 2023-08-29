@@ -1,0 +1,20 @@
+# Default values for backbone.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# Port db runs on
+dbInternalPort: 5432
+
+# postgres user
+postgresUser: legacyweb
+
+# database password (change me)
+dbPassword: 'supersecretpassword'
+
+# Change this to the local path you want to mount on your master node
+volumePath: /legacyweb/db
+
+
+# You can leave these default
+persistentDbPath: ''
+postgresDbName: 'legacyweb'
