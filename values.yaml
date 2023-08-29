@@ -2,13 +2,6 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-# Port db runs on
-dbInternalPort: 27017
-dbServicePort: 5432
-
-# Port redis runs on
-redisPort: 6379
-
 # postgres user
 postgresUser: legacyweb
 
@@ -25,6 +18,17 @@ volumePath: /legacyweb/db
 masterNode: 'myMaster'
 
 # You can leave these default
+dbInternalPort: 27017
+dbServicePort: 5432
+redisPort: 6379
+webHttpPort: 80
 persistentDbPath: '/var/lib/postgresql/data/pgdata'
 postgresDbName: legacyweb
 dbVolumeSize: 4Gi
+
+# This will be updated with each new app
+locations:
+- path: '/'
+  directives:
+  - 'root   /usr/share/nginx/html;'
+  - 'index  index.html index.htm;'

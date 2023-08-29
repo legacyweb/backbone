@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Daemonset
+metadata:
+  name: legacyweb-nginx
+  labels:
+    app: legacyweb-nginx
+spec:
+  selector:
+    matchLabels:
+      app: legacyweb-nginx
+  template:
+    metadata:
+      labels:
+        app: legacyweb-nginx
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      containers:
+        - name: legacyweb-nginx
+          image: 'nginx:latest'
+          imagePullPolicy: Always
+          ports:
+            - containerPort: {{ .Values.webHttpPort }}
+              protocol: TCP
