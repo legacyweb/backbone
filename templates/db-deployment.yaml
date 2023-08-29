@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: legacyweb-db
-          image: "bitnami/postgresql:latest"
+          image: "postgres:latest"
           imagePullPolicy: Always
           volumeMounts:
             - mountPath: {{ .Values.persistentDbPath }}
