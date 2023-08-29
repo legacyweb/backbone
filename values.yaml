@@ -3,7 +3,8 @@
 # Declare variables to be passed into your templates.
 
 # Port db runs on
-dbInternalPort: 5432
+dbInternalPort: 27017
+dbServicePort: 5432
 
 # postgres user
 postgresUser: legacyweb
@@ -14,7 +15,10 @@ dbPassword: 'supersecretpassword'
 # Change this to the local path you want to mount on your master node
 volumePath: /legacyweb/db
 
+# Node you want the local db mount to be on
+masterNode: 'myMaster'
 
 # You can leave these default
-persistentDbPath: ''
-postgresDbName: 'legacyweb'
+persistentDbPath: '/var/lib/postgresql/data/pgdata'
+postgresDbName: legacyweb
+dbVolumeSize: 4Gi
