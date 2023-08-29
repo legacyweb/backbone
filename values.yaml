@@ -21,7 +21,7 @@ masterNode: 'myMaster'
 dbInternalPort: 27017
 dbServicePort: 5432
 redisPort: 6379
-webHttpPort: 80
+webHttpPort: 8080
 persistentDbPath: '/var/lib/postgresql/data/pgdata'
 postgresDbName: legacyweb
 dbVolumeSize: 4Gi

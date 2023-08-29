@@ -22,3 +22,10 @@ spec:
           ports:
             - containerPort: {{ .Values.webHttpPort }}
               protocol: TCP
+          volumeMounts:
+            - mountPath: /etc/nginx/conf.d
+              name: nginx-conf-volume
+      volumes:
+        - name: nginx-conf-volume
+          configMap:
+            name: nginx-conf
